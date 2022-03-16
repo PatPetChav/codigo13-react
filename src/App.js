@@ -3,6 +3,8 @@ import { useState } from "react";
 
 import Header from "./Header"
 import Footer from "./Footer"
+import FormRegister from "./Form"
+import FormUser from "./FormUser"
 
 // El primer paso para definir un componente es el nombre
 // El nombre de un componente siempre debe iniciar en mayuscula
@@ -43,6 +45,7 @@ const PrimerComponente = () => {
 
   return (
     <div>
+
       <Header/>
       <h1>Hola mundo</h1>
       <div>
@@ -55,6 +58,9 @@ const PrimerComponente = () => {
         {/* Ademas es la forma en el caso nuestra reciba algun parametro */}
         <button onClick={() => parametros(10, 20)}>Restar</button>
       </div>
+      <hr />
+      {/*<FormRegister/>*/}
+      <FormUser/>
       <Footer/>
     </div>
   );
