@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import {Link} from "react-router-dom"
 import {
   Card,
   CardContent,
@@ -11,6 +12,7 @@ import {
   Select,
   MenuItem,
   CircularProgress,
+  Button,
 } from "@mui/material";
 import { getDataFromPokemon } from "../../service";
 
@@ -107,6 +109,10 @@ const Flags = () => {
                   <p>Population: {country.population}</p>
                   <p>Region: {country.region}</p>
                   <p>Capital: {country.capital}</p>
+                  <Link to={`/flags/detalle/${country.name.common}`}>
+                    <Button color="primary">ver detalle</Button>
+                  </Link>
+                  
                 </CardContent>
               </Card>
             </Grid>
