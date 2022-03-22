@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Container,Grid } from "@mui/material";
+import { Card,CardContent,CardMedia,Container,Grid } from "@mui/material";
 import { getFlagDetail } from "../../service/flags";
 
 
@@ -16,14 +16,7 @@ const FlagsDetalle = () => {
         svg:"",
       });
 
-      const handleChangeInput = (e) => {
-        const { value, name } = e.target;
-    
-        setValues({
-          ...values,
-          [name]: value,
-        });
-      };
+     
 
     const fetchDetailFlag = async () => {
       console.log("Aqui mi pais",name)
@@ -44,34 +37,36 @@ const FlagsDetalle = () => {
       }, []);
 
       console.log("datos",values)
+           
+      const miArray = []
+      miArray[0] = values
+      console.log("lenggg", miArray.length)
+      console.log("myarray", miArray)
 
       return (
         <Container>
-           <h4>Detalle</h4>
-           {values.length > 0 &&
+          <h4>Detalle de País</h4>
+          {miArray.length > 0 && 
+           
             <Grid container spacing={3}>
              
                 <Grid item md={4}>
-                  <img src={values.svg}/>                    
+                  <img src={miArray[0].svg} height={250} width={350}/>                    
                 </Grid>
                 <Grid item md={4}>
                     <h4>{values.name}</h4>
          
-                    <p>Native Name: {values.nativeName}</p>
-                    <p>Population: {values.population}</p>
-                    <p>Region: {values.region}</p>
-                    <p>Sub Region: {values.subregion}</p>
-                    <p>Capital: {values.capital}</p>
-                </Grid>
-                <Grid item md={4}>
-                    <p>Languajes: {values.languages}</p>
-                </Grid>
+                    <p>Native Name: {miArray[0].nativeName}</p>
+                    <p>Population: {miArray[0].population}</p>
+                    <p>Region:     {miArray[0].region}</p>
+                    <p>Sub Region: {miArray[0].subregion}</p>
+                    <p>Capital:    {miArray[0].capital}</p>
+                </Grid>              
                 
             </Grid>
           }
         </Container> 
       )
-
 }
 
 export default FlagsDetalle;
