@@ -48,3 +48,20 @@ h5 {
   flex-direction: column;
 }
 
+.minav {
+  display: flex;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-left:50px;
+
+
+}
+
+.ul-nav {
+  display: flex;
+}
+
+.li-nav {
+  margin-left: 55px;
+}

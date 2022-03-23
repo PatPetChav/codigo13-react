@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { Card,CardContent,CardMedia,Container,Grid } from "@mui/material";
+import { useParams,useNavigate } from "react-router-dom";
+import { Button,Card,CardContent,CardMedia,Container,Grid } from "@mui/material";
 import { getFlagDetail } from "../../service/flags";
+import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 
 
 const FlagsDetalle = () => {
     const { name } = useParams();
+
+    const history = useNavigate()
 
     const [values, setValues] = useState({
         nativeName: "",
@@ -45,6 +48,10 @@ const FlagsDetalle = () => {
 
       return (
         <Container>
+          <Button variant="outlined" onClick={() =>history(-1)}>
+            <ArrowBackRoundedIcon/>
+            Back
+          </Button>
           <h4>Detalle de País</h4>
           {miArray.length > 0 && 
            

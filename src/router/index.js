@@ -13,6 +13,10 @@
  import YoutubeAdministrator from "../pages/YoutubeAdministrator";
  import MovieUpdate from "../pages/MovieUpdate";
  import FlagsDetalle from "../pages/FlagsDetalle";
+ import Login from "../pages/Login";
+
+ // Layout
+ import Main from "../layouts/Main";
  
  // Nuestro Router va a ser un componente el cual se encargue de retornar
  // las rutas con su respectiva vista
@@ -21,6 +25,7 @@
    return (
      <BrowserRouter>
        <Routes>
+       <Route element={<Main />}>
          <Route path="/" element={<Home />} />
          <Route path="/flags" element={<Flags />} />
          <Route path="/youtube" element={<Youtube />} />
@@ -36,7 +41,10 @@
            path="/flags/detalle/:name"
            element={<FlagsDetalle />}
          />
+         </Route>
+         <Route path="login" element={<Login />} />
        </Routes>
+       
      </BrowserRouter>
    );
  };
