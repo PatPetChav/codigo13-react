@@ -1,16 +1,62 @@
-import { useContext } from "react";
+import { useContext,useState } from "react";
+import { Navigate } from "react-router-dom";
 import { Button, Grid, Card, CardContent, TextField } from "@mui/material";
 import bglogin from "../../assets/bg-login.png"
 import { UserContext } from "../../Context/UserContext";
+import swal from "sweetalert";
 
 const Login = () => {
     const { user, storeUser } = useContext(UserContext);
 
-  const handleClickLogin = () => {
+  const handleClickLoginAntes = () => {
     storeUser({
       name: "Patricia",
       last_name: "Perez",
+
+
     });
+  };
+
+  const [userData, setUserData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleChangeInput = (e) => {
+    const { name, value } = e.target;
+
+    setUserData({
+      ...userData,
+      [name]: value,
+    });
+  };
+
+  const handleClickLoginAntes2 = () => {
+    storeUser(userData);
+  };
+
+  const handleClickLogin = () => {
+    storeUser(userData);
+    if (userData.email === "pepe@gmail.com" && userData.password === "123456") {
+      const user = {
+        nombre: "Pepe",
+        apellido: "Zapata",
+        correo: userData.email,
+        edad: 21,
+        trabajo: "Software Developer",
+        dni: "123456",
+        cel: "999999",
+      };
+      storeUser(user);
+
+      window.location.href = "/youtube/administrador"
+    } else {
+      swal({
+        icon: "error",
+        title: "Error",
+        text: "Email or Password incorrect",
+      });
+    }
   };
 
   return (
@@ -37,10 +83,12 @@ const Login = () => {
             </p>
             <Grid container spacing={3} mt={5}>
               <Grid item md={12}>
-                <TextField label="Email" fullWidth />
+                <TextField label="Email" 
+                fullWidth  onChange={handleChangeInput} name="email"/>
               </Grid>
               <Grid item md={12}>
-                <TextField label="Password" fullWidth />
+                <TextField label="Password" type="password"
+                fullWidth onChange={handleChangeInput} name="password"/>
               </Grid>
               <Grid item md={12}>
                 <Button
