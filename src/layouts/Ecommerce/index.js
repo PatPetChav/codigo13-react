@@ -1,10 +1,14 @@
+import { useContext } from "react";
 import {Outlet} from "react-router-dom"
-import { Grid, TextField } from "@mui/material";
+import { Badge, Grid, TextField } from "@mui/material";
 import ShoppingBasketRoundedIcon from "@mui/icons-material/ShoppingBasketRounded";
 import logo from "../../assets/logo.svg";
+import { UserContext } from "../../Context/UserContext";
 import "./index.css";
 
 const Ecommerce = () => {
+  const { basket } = useContext(UserContext);
+
   return (
     <div>
       <nav className="nav-ecommerce">
@@ -35,7 +39,13 @@ const Ecommerce = () => {
               <li className="li-basket">
                 <a href="/">
                   Basket &nbsp;
-                  <ShoppingBasketRoundedIcon />
+                  
+                   <Badge
+                    badgeContent={basket ? basket.length : 0}
+                    color="primary"
+                  >
+                    <ShoppingBasketRoundedIcon />
+                  </Badge>
                 </a>
               </li>
             </ul>
