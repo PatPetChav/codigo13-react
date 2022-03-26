@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import {Outlet} from "react-router-dom"
+import { Outlet, Link } from "react-router-dom";
 import { Badge, Grid, TextField } from "@mui/material";
 import ShoppingBasketRoundedIcon from "@mui/icons-material/ShoppingBasketRounded";
 import logo from "../../assets/logo.svg";
@@ -37,7 +37,7 @@ const Ecommerce = () => {
                 <a href="/">Wish List</a>
               </li>
               <li className="li-basket">
-                <a href="/">
+              <Link to="/ecommerce/basket">
                   Basket &nbsp;
                   
                    <Badge
@@ -46,7 +46,7 @@ const Ecommerce = () => {
                   >
                     <ShoppingBasketRoundedIcon />
                   </Badge>
-                </a>
+              </Link>
               </li>
             </ul>
           </Grid>

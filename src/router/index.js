@@ -15,6 +15,7 @@
  import FlagsDetalle from "../pages/FlagsDetalle";
  import Login from "../pages/Login";
  import PopularWeek from "../pages/PopularWeek";
+ import BasketView from "../pages/BasketView";
 
  // Layout
  import Main from "../layouts/Main";
@@ -42,6 +43,7 @@
          {/* ROUTE para ecommerce */}
          <Route element={<Ecommerce />}>
           <Route path="ecommerce" element={<PopularWeek />} />
+          <Route path="ecommerce/basket" element={<BasketView />} />
         </Route>
         {/* ROUTE DEL ADMIN (PRIVADAS) */}
         <Route element={<Private />}>
