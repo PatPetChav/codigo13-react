@@ -1,21 +1,16 @@
-import { useContext,useState } from "react";
-import { Navigate } from "react-router-dom";
+import { useContext, useState } from "react";
 import { Button, Grid, Card, CardContent, TextField } from "@mui/material";
-import bglogin from "../../assets/bg-login.png"
+import bgLogin from "../../assets/bg-login.png";
 import { UserContext } from "../../Context/UserContext";
+// si tenemos 2 funciones con el mismo nombre podemos usar un alias en el import
+import {
+  storeUser as storeUserFirebase,
+  loginUser,
+} from "../../service/firestore";
 import swal from "sweetalert";
 
 const Login = () => {
-    const { user, storeUser } = useContext(UserContext);
-
-  const handleClickLoginAntes = () => {
-    storeUser({
-      name: "Patricia",
-      last_name: "Perez",
-
-
-    });
-  };
+  const { storeUser } = useContext(UserContext);
 
   const [userData, setUserData] = useState({
     email: "",
@@ -31,32 +26,34 @@ const Login = () => {
     });
   };
 
-  const handleClickLoginAntes2 = () => {
-    storeUser(userData);
-  };
+  const handleClickLogin = async () => {
+    // vamos hacer una funcion que se encargue de poder hacer login
+    // ahora si el usuario con el que estamos login no existe lo creamos
+    // como nuevo usuario
+    /**
+     * Primero vamos a intentar hacer login el usuario
+     */
+    const { email, password } = userData;
+    let response = await loginUser(email, password);
+    console.log(response);
+    if (!response.ok) {
+      // si esto es falso el usuario no existe por ende lo vamos a crear
+      response = await storeUserFirebase(email, password);
 
-  const handleClickLogin = () => {
-    storeUser(userData);
-    if (userData.email === "pepe@gmail.com" && userData.password === "123456") {
-      const user = {
-        nombre: "Pepe",
-        apellido: "Zapata",
-        correo: userData.email,
-        edad: 21,
-        trabajo: "Software Developer",
-        dni: "123456",
-        cel: "999999",
-      };
-      storeUser(user);
+      if (!response.ok) {
+        swal({
+          title: "Error",
+          text: response.data,
+          icon: "error",
+        });
 
-      window.location.href = "/youtube/administrador"
-    } else {
-      swal({
-        icon: "error",
-        title: "Error",
-        text: "Email or Password incorrect",
-      });
+        return;
+      }
     }
+    // recuerden que despues del login o el createUser debemos guardar al usuario
+    //  en userContext
+    storeUser(response.data.user);
+    window.location.href = "/youtube/administrador";
   };
 
   return (
@@ -67,10 +64,7 @@ const Login = () => {
       sx={{ height: "100vh", padding: 20, backgroundColor: "#FFD885" }}
     >
       <Grid item md={6}>
-      <h4>
-      {user?.name} {user?.last_name}
-        </h4>
-        <img src={bglogin} width={600} alt="" />
+        <img src={bgLogin} width={600} alt="" />
       </Grid>
       <Grid item md={6}>
         <Card sx={{ width: 500 }}>
@@ -83,12 +77,21 @@ const Login = () => {
             </p>
             <Grid container spacing={3} mt={5}>
               <Grid item md={12}>
-                <TextField label="Email" 
-                fullWidth  onChange={handleChangeInput} name="email"/>
+                <TextField
+                  label="Email"
+                  fullWidth
+                  name="email"
+                  onChange={handleChangeInput}
+                />
               </Grid>
               <Grid item md={12}>
-                <TextField label="Password" type="password"
-                fullWidth onChange={handleChangeInput} name="password"/>
+                <TextField
+                  label="Password"
+                  fullWidth
+                  type="password"
+                  name="password"
+                  onChange={handleChangeInput}
+                />
               </Grid>
               <Grid item md={12}>
                 <Button

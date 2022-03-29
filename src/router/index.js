@@ -16,6 +16,8 @@
  import Login from "../pages/Login";
  import PopularWeek from "../pages/PopularWeek";
  import BasketView from "../pages/BasketView";
+ import CreateProduct from "../pages/CreateProduct";
+ import Profile from "../pages/Profile";
 
  // Layout
  import Main from "../layouts/Main";
@@ -55,8 +57,14 @@
            path="/youtube/administrador/editar/:id"
            element={<MovieUpdate />}
          />
+         <Route path="/ecommerce/create" element={<CreateProduct />} />
+
+         <Route path="/perfil" element={<Profile />} />
+
+         
 
         </Route>
+
 
          <Route path="login" element={<Login />} />
        </Routes>
