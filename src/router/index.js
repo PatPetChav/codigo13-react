@@ -7,7 +7,7 @@
  * el el path creado
  */
  import { BrowserRouter, Routes, Route } from "react-router-dom";
- import Home from "../pages/Home";
+ import Pokemon from "../pages/Pokemon";
  import Flags from "../pages/Flags";
  import Youtube from "../pages/Youtube";
  import YoutubeAdministrator from "../pages/YoutubeAdministrator";
@@ -18,7 +18,7 @@
  import BasketView from "../pages/BasketView";
  import CreateProduct from "../pages/CreateProduct";
  import Profile from "../pages/Profile";
-
+ import Home from "../pages/Home";
  // Layout
  import Main from "../layouts/Main";
  import Private from "../layouts/Private"
@@ -33,7 +33,7 @@
        <Routes>
           {/* ROUTE DEL MAIN (PUBLICAS) */}
        <Route element={<Main />}>
-         <Route path="/" element={<Home />} />
+         <Route path="/" element={<Pokemon />} />
          <Route path="/flags" element={<Flags />} />
          <Route path="/youtube" element={<Youtube />} />
         
@@ -61,7 +61,7 @@
 
          <Route path="/perfil" element={<Profile />} />
 
-         
+         <Route path="/home" element={<Home />} />
 
         </Route>
 
