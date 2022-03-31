@@ -19,6 +19,8 @@
  import CreateProduct from "../pages/CreateProduct";
  import Profile from "../pages/Profile";
  import Home from "../pages/Home";
+ import Map from "../pages/Map";
+ import SignUp from "../pages/SignUp";
  // Layout
  import Main from "../layouts/Main";
  import Private from "../layouts/Private"
@@ -32,10 +34,13 @@
      <BrowserRouter>
        <Routes>
           {/* ROUTE DEL MAIN (PUBLICAS) */}
+          <Route path="login" element={<Login />} />
+          <Route path="signUp" element={<SignUp />} />
        <Route element={<Main />}>
          <Route path="/" element={<Pokemon />} />
          <Route path="/flags" element={<Flags />} />
          <Route path="/youtube" element={<Youtube />} />
+         <Route path="/maps" element={<Map />} />
         
          <Route
            path="/flags/detalle/:name"
@@ -66,7 +71,7 @@
         </Route>
 
 
-         <Route path="login" element={<Login />} />
+        
        </Routes>
        
      </BrowserRouter>
