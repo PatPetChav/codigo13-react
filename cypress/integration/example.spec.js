@@ -11,7 +11,7 @@ describe("Mi primera prueba con cypress", () => {
       // aca vamos a verificar si es que nuestro home funciona o no
       //cy => cypress
       // Esto va a entrar a localhost:3000 y decirno si funciona o no
-      cy.visit("http://localhost:3000/");
+      cy.visit("http://codigo13-react-beta.vercel.app/");
       // contains
       // Esto sirve para poder buscar algun texto en nuestra pagina
       // que busque la palabra pokedex
@@ -28,7 +28,7 @@ describe("Mi primera prueba con cypress", () => {
   
     // vamos a crear a otra prueba para /flags
     it("pruebas para banders", () => {
-      cy.visit("http://localhost:3000/flags");
+      cy.visit("http://codigo13-react-beta.vercel.app/flags");
       // vamos a ver como podemos escribir en un input
       // Estamos buscando el primero input y luego de encontrarlos
       // estamos escribiendo peru en dicho input
@@ -47,7 +47,7 @@ describe("Mi primera prueba con cypress", () => {
    // })
 
     it("prueba de login", () => {
-        cy.visit("http://localhost:3000/login");
+        cy.visit("http://codigo13-react-beta.vercel.app/login");
         // ahora vamos a ver de que otra podemos acceder a los inputs
         // usando el name del inputs podemos encontrar uno especifico y
         // poder escribir en el
