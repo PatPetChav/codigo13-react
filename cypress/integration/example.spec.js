@@ -4,6 +4,8 @@
 // Este archivo sera el que contenga nuestras pruebas
 // Para poder iniciar una prueba necesitamos darle un titulo
 // en este caso usamos describe para darle un titulo
+//aquiii
+
 describe("Mi primera prueba con cypress", () => {
     // dentro de nuestro arrow function vamos a escribir las pruebas
     // que haremos ejemplo

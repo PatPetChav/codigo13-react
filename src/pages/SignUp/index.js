@@ -18,9 +18,7 @@ import {
 import { useFormik } from "formik";
 import DateAdapter from "@mui/lab/AdapterDateFns";
 import { LocalizationProvider, DatePicker } from "@mui/lab";
-import { auth,storeUser,updateUserProfile } from "../../service/firestore";
 import swal from "sweetalert";
-import { onAuthStateChanged } from "firebase/auth";
 
 // nombre
 // apellido
@@ -36,10 +34,9 @@ import { onAuthStateChanged } from "firebase/auth";
 // recurden que al crear un ususario solo podeomos guardar 2 cosas
 // email y el password
 // ustedes puede hacer que despuesde que se cree el usuario pueden
-// actualizar y guardar su nombre 
+// actualizar y guardar su nombre
 
 const SignUp = () => {
-  const [user, setUser] = useState(null);
   const [dateSelect, setDateSelect] = useState(null);
 
   const [validateInputsEmpty, setValidateInputsEmpty] = useState({
@@ -136,7 +133,7 @@ const SignUp = () => {
     // validate que ahora es una funcion de formik por ende el valir default
     // que tendra como parametros son los values
     validate,
-    //usen async antes del storeUser
+    // usen async antes del storeUser 
     onSubmit: async (values) => {
       // Si values.languages
       if (values.languages.length === 0) {
@@ -158,33 +155,9 @@ const SignUp = () => {
       }
       // aca ustedes deben llamar a la funcion que se
       // encarga de crear al usuario en firebase
-      const data = storeUser(values.email, values.password)
-
-      updateUser(values)
-
       console.log(values);
     },
   });
-
-  const updateUser = async (values) => {
-    const profile = {
-      displayName: values.name + " " +  values.last_name, //"Patricia Perez",
-      photoURL: "https://img.freepik.com/vector-gratis/mujer-que-trabaja-computadora-portatil-diagrama-ilustracion-dibujos-animados-negocios_286786-1356.jpg",
-    };
-    await updateUserProfile(profile);
-    getUser();
-  };
-
-  const getUser = () => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setUser(user);
-        console.log(user);
-      } else {
-        console.log("user not found");
-      }
-    });
-  };
 
   return (
     <Container maxWidth="lg">
